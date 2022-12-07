@@ -10,6 +10,8 @@ public class Numbers {
     private final List<Number> numbers;
 
     public Numbers(List<Number> numbers){
+        validateLength(numbers);
+        validateDuplication(numbers);
         this.numbers = numbers;
     }
 
@@ -28,7 +30,5 @@ public class Numbers {
             throw new IllegalArgumentException();
         }
     }
-
-
 
 }
