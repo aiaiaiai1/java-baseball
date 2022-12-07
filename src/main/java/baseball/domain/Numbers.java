@@ -7,28 +7,30 @@ import java.util.Set;
 
 public class Numbers {
     private static final int NUMBERS_LENGTH = 3;
-    private final List<Number> numbers;
+    private final List<Number> numbers = new ArrayList<>();
 
-    public Numbers(List<Number> numbers){
+    public Numbers(List<Integer> numbers) {
         validateLength(numbers);
         validateDuplication(numbers);
-        this.numbers = numbers;
+        set(numbers);
     }
 
-    private void validateLength(List<Number> numbers){
-        if(numbers.size() != NUMBERS_LENGTH){
-            throw new IllegalArgumentException();
+    private void set(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            this.numbers.add(new Number(number));
         }
     }
-    private void validateDuplication(List<Number> numbers){
-        List<Integer> tmp = new ArrayList<>();
-        for(Number numnber : numbers){
-            tmp.add(numnber.getNumber());
-        }
-        Set<Integer> tmp2 = new HashSet<>(tmp);
-        if(tmp.size() != tmp2.size()){
+
+    private void validateLength(List<Integer> numbers) {
+        if (numbers.size() != NUMBERS_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
 
+    private void validateDuplication(List<Integer> numbers) {
+        Set<Integer> NotDuplicateNumbers = new HashSet<>(numbers);
+        if (numbers.size() != NotDuplicateNumbers.size())
+            throw new IllegalArgumentException();
+    }
 }
+
