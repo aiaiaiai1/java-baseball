@@ -13,13 +13,19 @@ public class Number {
         this.number = number;
     }
 
-    public Number(){
-        this.number = Randoms.pickNumberInRange(NUMBER_LOWER_INCLUSIVE, NUMBER_UPPER_INCLUSIVE);
-    }
-
-    private void validate(int number){
-        if(number > NUMBER_UPPER_INCLUSIVE || number < NUMBER_LOWER_INCLUSIVE){
+    private void validate(int number) {
+        if (number > NUMBER_UPPER_INCLUSIVE || number < NUMBER_LOWER_INCLUSIVE) {
             throw new IllegalArgumentException();
         }
     }
+
+    public boolean isSame(int number) {
+        return (this.number == number);
+    }
+
+    public int getNumber() {
+        return number;
+    }
 }
+
+
