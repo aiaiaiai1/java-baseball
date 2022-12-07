@@ -3,6 +3,7 @@ package baseball.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
@@ -30,6 +31,22 @@ public class NumbersTest {
         List<Integer> numbers = List.of(1,2,2);
         assertThatThrownBy(
                 () -> new Numbers(numbers)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("같은숫자 포함개수 확인")
+    @ParameterizedTest
+    void containNumbers() {
+        Numbers numbers = new Numbers(List.of(1,2,3));
+        int result = numbers.contain(List.of(1,4,2));
+        assertThat(result).isEqualTo(2);
+    }
+
+    @DisplayName("같은숫자이면서 같은자리인 숫자개수 확인")
+    @Test
+    void matchNumbers() {
+        Numbers numbers = new Numbers(List.of(1,2,3));
+        int result = numbers.match(List.of(1,4,2));
+        assertThat(result).isEqualTo(1);
     }
 
 }
