@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.lang.reflect.Field;
@@ -36,4 +37,13 @@ public class NumberTest {
                 () -> new Number(number)).isInstanceOf(IllegalArgumentException.class);
 
     }
+    @DisplayName("숫자가 같은지 다른지 확인")
+    @ParameterizedTest
+    @CsvSource(value = {"5,true","4,false"})
+    void compareNumber1(int comparedNumber, boolean isSame) {
+        Number number = new Number(comparedNumber);
+        boolean result = number.isSame(5);
+        assertThat(result).isEqualTo(isSame);
+    }
+
 }
