@@ -32,5 +32,33 @@ public class Numbers {
         if (numbers.size() != NotDuplicateNumbers.size())
             throw new IllegalArgumentException();
     }
+
+    public List<Integer> getNumbers() {
+        List<Integer> numbers = new ArrayList<>();
+        for (Number number : this.numbers) {
+            numbers.add(number.getNumber());
+        }
+        return numbers;
+    }
+
+    public int match(List<Integer> numbers) {
+        int count = 0;
+        for (int index = 0; index < NUMBERS_LENGTH; index++) {
+            if (this.numbers.get(index).isSame(numbers.get(index))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int contain(List<Integer> numbers) {
+        int count = 0;
+        for (int index = 0; index < NUMBERS_LENGTH; index++) {
+            if (this.getNumbers().contains(numbers.get(index))) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
 
