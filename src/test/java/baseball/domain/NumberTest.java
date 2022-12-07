@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.lang.reflect.Field;
 
 public class NumberTest {
+
     @DisplayName("1~9사이의 랜덤숫자 생성")
     @RepeatedTest(5)
     void generateRandomNumber() {
@@ -26,12 +27,28 @@ public class NumberTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    @DisplayName("숫자 생성")
+    void generateNumber() {
+        try {
+            Number number = new Number(5);
+            Field field = number.getClass().getDeclaredField("number");
+            field.setAccessible(true);
+            int result = (int) field.get(number);
+
+            assertThat(result).isEqualTo(5);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @DisplayName("1~9사이의 수가 아니면 예외 발생")
     @ParameterizedTest()
-    @ValueSource(ints = {0,10,15})
+    @ValueSource(ints = {0, 10, 15})
     void generatedNumberButInvaild(int number) {
         assertThatThrownBy(
-                ()-> new Number(number)).isInstanceOf(IllegalArgumentException.class);
+                () -> new Number(number)).isInstanceOf(IllegalArgumentException.class);
 
     }
 }
