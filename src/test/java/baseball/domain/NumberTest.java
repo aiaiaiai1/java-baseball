@@ -13,21 +13,6 @@ import java.lang.reflect.Field;
 
 public class NumberTest {
 
-    @DisplayName("1~9사이의 랜덤숫자 생성")
-    @RepeatedTest(5)
-    void generateRandomNumber() {
-        try {
-            Number number = new Number();
-            Field field = number.getClass().getDeclaredField("number");
-            field.setAccessible(true);
-            int result = (int) field.get(number);
-
-            assertThat(result >= 1 && result <= 9).isTrue();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     @Test
     @DisplayName("숫자 생성")
     void generateNumber() {
