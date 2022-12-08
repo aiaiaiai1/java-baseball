@@ -9,11 +9,31 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ComputerTest {
-    @DisplayName("힌트결과 확인하기")
+    @DisplayName("볼 갯수(같은숫자) 확인하기")
     @Test
-    void checkHint() {
-        Computer computer = new Computer(List.of(1,2,3));
-        List<Integer> result = computer.checkHint(List.of(1,3,2));
-        assertThat(result).isEqualTo(List.of(2,1));
+    void countBall() {
+        Computer computer = new Computer(){
+            @Override
+            protected List<Integer> generate(){
+                return List.of(1,2,3);
+            }
+        };
+        computer.initiateNumbers();
+        int result = computer.countBall(List.of(1,3,2));
+        assertThat(result).isEqualTo(3);
+    }
+
+    @DisplayName("스트라이크 갯수(같은숫자 + 같은자리) 확인하기")
+    @Test
+    void countStrike() {
+        Computer computer = new Computer(){
+            @Override
+            protected List<Integer> generate(){
+                return List.of(1,2,3);
+            }
+        };
+        computer.initiateNumbers();
+        int result = computer.countStrike(List.of(1,3,2));
+        assertThat(result).isEqualTo(1);
     }
 }
