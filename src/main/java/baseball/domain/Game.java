@@ -6,6 +6,7 @@ import java.util.List;
 public class Game {
     private Numbers computerNumbers;
     private final RandomNumbersGenerator randomNumbersGenerator = new RandomNumbersGenerator();
+
     public void initiateComputer(){
         computerNumbers = new Numbers(generateRandomNumbers());
     }
