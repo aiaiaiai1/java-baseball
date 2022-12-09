@@ -7,6 +7,8 @@ import java.util.Set;
 
 public class Numbers {
     private static final int NUMBERS_LENGTH = 3;
+    private static final String INVALID_LENGTH_ERROR = "[ERROR] 유효하지 않는 자리수 입니다.";
+    private static final String HAS_DUPLICATE_NUMBER_ERROR = "[ERROR] 중복된 숫자가 존재합니다.";
     private final List<Number> numbers = new ArrayList<>();
 
     public Numbers(List<Integer> numbers) {
@@ -23,14 +25,14 @@ public class Numbers {
 
     private void validateLength(List<Integer> numbers) {
         if (numbers.size() != NUMBERS_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_LENGTH_ERROR);
         }
     }
 
     private void validateDuplication(List<Integer> numbers) {
         Set<Integer> NotDuplicateNumbers = new HashSet<>(numbers);
         if (numbers.size() != NotDuplicateNumbers.size())
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(HAS_DUPLICATE_NUMBER_ERROR);
     }
 
     public List<Integer> getNumbers() {
